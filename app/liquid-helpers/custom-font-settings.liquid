@@ -1,0 +1,120 @@
+{% if settings.type_custom_header_font != 'disabled' or settings.type_custom_body_font != 'disabled' %}
+  <link rel="preload" href="https://use.typekit.net/tqb4wgv.css" as="style">
+{% endif %}
+
+{% comment %} Custom Font Logic {% endcomment %}
+{% if settings.type_custom_header_font != 'disabled' %}
+  {% case settings.type_custom_header_font %}
+    {% when 'roc_grotesk_regular' %}
+      {% style %}
+        :root {
+          --font-heading-family: 'roc-grotesk', sans-serif;
+          --font-heading-style: normal;
+          --font-heading-weight: 400;
+        }
+      {% endstyle %}
+    {% when 'roc_grotesk_bold' %}
+      {% style %}
+        :root {
+          --font-heading-family: 'roc-grotesk', sans-serif;
+          --font-heading-style: normal;
+          --font-heading-weight: 600;
+        }
+      {% endstyle %}
+  {% endcase %}
+{% else %}
+  {% style %}
+    {{ settings.type_header_font | font_face: font_display: 'swap' }}
+
+    :root {
+      --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+      --font-heading-style: {{ settings.type_header_font.style }};
+      --font-heading-weight: {{ settings.type_header_font.weight }};
+    }
+  {% endstyle %}
+{% endif %}
+
+{% if settings.type_custom_body_font != 'disabled' %}
+  {% case settings.type_custom_body_font %}
+    {% when 'roc_grotesk_regular' %}
+      {% style %}
+        :root {
+          --font-body-family: 'roc-grotesk', sans-serif;
+          --font-body-style: normal;
+          --font-body-weight: 400;
+          --font-body-weight-bold: 600;
+        }
+      {% endstyle %}
+    {% when 'roc_grotesk_bold' %}
+      {% style %}
+        :root {
+          --font-body-family: 'roc-grotesk', sans-serif;
+          --font-body-style: normal;
+          --font-body-weight: 600;
+          --font-body-weight-bold: 600;
+        }
+      {% endstyle %}
+  {% endcase %}
+{% else %}
+  {%- liquid
+    assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+    assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+    assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+  %}
+
+  {% style %}
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    {{ body_font_italic | font_face: font_display: 'swap' }}
+    {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+
+    :root {
+      --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+      --font-body-style: {{ settings.type_body_font.style }};
+      --font-body-weight: {{ settings.type_body_font.weight }};
+      --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+    }
+  {% endstyle %}
+{% endif %}
+
+{
+  "type": "select",
+  "id": "type_custom_header_font",
+  "options": [
+    {
+      "value": "disabled",
+      "label": "Disabled"
+    },
+    {
+      "value": "roc_grotesk_regular",
+      "label": "Roc Grotesk Regular"
+    },
+    {
+      "value": "roc_grotesk_bold",
+      "label": "Roc Grotesk Bold"
+    }
+  ],
+  "default": "disabled",
+  "label": "Custom font"
+},
+
+{
+  "type": "select",
+  "id": "type_custom_body_font",
+  "options": [
+    {
+      "value": "disabled",
+      "label": "Disabled"
+    },
+    {
+      "value": "roc_grotesk_regular",
+      "label": "Roc Grotesk Regular"
+    },
+    {
+      "value": "roc_grotesk_bold",
+      "label": "Roc Grotesk Bold"
+    }
+  ],
+  "default": "disabled",
+  "label": "Custom font"
+},

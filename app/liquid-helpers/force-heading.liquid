@@ -1,0 +1,20 @@
+{% comment %} Sections that need option to be H1 {% endcomment %}
+{% comment %} Usually Rich Text, Image with Text, and sometimes Image Banner {% endcomment %}
+
+{% if block.settings.heading_h1_force %}
+  <h1 class="section__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+    <span>{{ block.settings.heading | escape }}</span>
+  </h1>
+{% else %}
+  <h2 class="section__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+    <span>{{ block.settings.heading | escape }}</span>
+  </h2>
+{% endif %}
+
+{
+  "type": "checkbox",
+  "id": "heading_h1_force",
+  "default": false,
+  "label": "Use as page header",
+  "info": "Enable this if this is your first section on a page. This setting forces the heading to become an H1 which is important for SEO."
+}

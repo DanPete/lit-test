@@ -1,0 +1,120 @@
+
+
+
+{% comment %} Sections that need extended brand colors {% endcomment %}
+{
+  "type": "select",
+  "id": "color_scheme",
+  "options": [
+    ...
+    {
+      "value": "inverse",
+      "label": "t:sections.all.colors.inverse.label"
+    },
+    {
+      "value": "brand-1",
+      "label": "Brand color 1"
+    },
+    {
+      "value": "brand-2",
+      "label": "Brand color 2"
+    },
+    {
+      "value": "brand-3",
+      "label": "Brand color 3"
+    },
+    {
+      "value": "brand-4",
+      "label": "Brand color 4"
+    },
+    {
+      "value": "brand-5",
+      "label": "Brand color 5"
+    }
+  ],
+  "default": "background-1",
+  "label": "t:sections.all.colors.label"
+},
+
+{% comment %} Base.css {% endcomment %}
+/* Brand colors */
+/* Dark background with light text (solid button label) */
+.color-brand-1 {
+  --color-foreground: var(--color-base-solid-button-labels);
+  --color-background: var(--color-brand-background-1);
+  --gradient-background: var(--color-base-brand-1);
+}
+
+/* Dark background with light text (solid button label) */
+.color-brand-2 {
+  --color-foreground: var(--color-base-solid-button-labels);
+  --color-background: var(--color-brand-background-2);
+  --gradient-background: var(--color-base-brand-2);
+}
+
+/* Light background with dark text */
+.color-brand-3 {
+  --color-foreground: var(--color-base-text);
+  --color-background: var(--color-brand-background-3);
+  --gradient-background: var(--color-base-brand-3);
+}
+
+/* Light background with dark text */
+.color-brand-4 {
+  --color-foreground: var(--color-base-text);
+  --color-background: var(--color-brand-background-4);
+  --gradient-background: var(--color-base-brand-4);
+}
+
+/* Dark background with light text (solid button label) */
+.color-brand-5 {
+  --color-foreground: var(--color-base-solid-button-labels);
+  --color-background: var(--color-brand-background-5);
+  --gradient-background: var(--color-base-brand-5);
+}
+
+{% comment %} setting_schema.json {% endcomment %}
+{
+  "id": "gradient_background_2",
+  "type": "color_background",
+  "label": "t:settings_schema.colors.settings.gradient_background_2.label"
+},
+{
+  "type": "header",
+  "content": "Brand colors"
+},
+{
+  "type": "color",
+  "id": "colors_brand_1",
+  "default": "#71BEAF",
+  "label": "Brand color 1",
+  "info": "Dark background with light text (solid button label)"
+},
+{
+  "type": "color",
+  "id": "colors_brand_2",
+  "default": "#972F65",
+  "label": "Brand color 2",
+  "info": "Dark background with light text (solid button label)"
+},
+{
+  "type": "color",
+  "id": "colors_brand_3",
+  "default": "#F2EEAA",
+  "label": "Brand color 3",
+  "info": "Light background with dark text"
+},
+{
+  "type": "color",
+  "id": "colors_brand_4",
+  "default": "#F4CE46",
+  "label": "Brand color 4",
+  "info": "Light background with dark text"
+},
+{
+  "type": "color",
+  "id": "colors_brand_5",
+  "default": "#DA5762",
+  "label": "Brand color 5",
+  "info": "Dark background with light text (solid button label)"
+}

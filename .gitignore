@@ -1,0 +1,10 @@
+node_modules
+config.yml
+/assets/*.mon.*
+.vscode
+.parcel-cache
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
